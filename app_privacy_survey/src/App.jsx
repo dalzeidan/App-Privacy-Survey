@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="page survey-page">
+      <div className="survey">
+        Survey page
+        <div className="survey-group">
+          <h2 className="group-label">Group Label</h2>
+          <div className="properties">
+            <div className="survey-headers table">
+              <div className="survey-header">Type</div>
+              <div className="survey-header">Extent of access</div>
+              <div className="survey-header">Purpose</div>
+            </div>
+            <div className="item-container table">
+              <div className="item">
+                <div className="item-name">Name</div>
+                <div className="item-desc">Description</div>
+              </div>
+              <div className="item-selections">
+                <div className="item-select">
+                  <div className="item-select-label">None</div>
+                  <input type="checkbox"></input>
+                </div>
+                <div className="item-select">
+                  <div className="item-select-label">Limited</div>
+                  <input type="checkbox"></input>
+                </div>
+                <div className="item-select">
+                  <div className="item-select-label">3rd Party</div>
+                  <input type="checkbox"></input>
+                </div>
+              </div>
+              <div className="item-selections">
+                <div className="item-select">
+                  <div className="item-select-label">None</div>
+                  <input type="checkbox"></input>
+                </div>
+                <div className="item-select">
+                  <div className="item-select-label">Identification</div>
+                  <input type="checkbox"></input>
+                </div>
+                <div className="item-select">
+                  <div className="item-select-label">Tracking</div>
+                  <input type="checkbox"></input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="app-preview">App store preview</div>
+    </div>
+  );
 }
 
-export default App
+export default App;
