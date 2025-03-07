@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import "./App.css";
+import InputRow from "./InputRow";
+import { SurveyContext } from "./SurveyContext";
 
 function App() {
+  const {dataTypes, purposes} = useContext(SurveyContext);
   return (
     <div className="page survey-page">
       <div className="survey">
-        Survey page
-        <div className="survey-group">
+        {/* <div className="survey-group">
           <h2 className="group-label">Group Label</h2>
           <div className="properties">
             <div className="survey-headers table">
@@ -48,7 +51,12 @@ function App() {
               </div>
             </div>
           </div>
+        </div> */}
+        <div className="purpose-headers">
+          <div className="header-labels type-header"></div>
+          {purposes.map((purpose, index) => <div key={purpose+"header"} className="purpose-header"><div className="purpose-header-text-tilt">{purpose}</div></div>)}
         </div>
+        {dataTypes.map((type, index) => <div key={type + "-" + index} className="full-row row"><div className="type-header">{type}</div><InputRow key={type + "row" + index} /></div>)}
       </div>
       <div className="app-preview">App store preview</div>
     </div>
