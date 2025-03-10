@@ -4,7 +4,7 @@ import InputRow from "./InputRow";
 import { SurveyContext } from "./SurveyContext";
 
 function App() {
-  const {dataTypes, purposes} = useContext(SurveyContext);
+  const { types, uses } = useContext(SurveyContext);
   return (
     <div className="page survey-page">
       <div className="survey">
@@ -54,9 +54,25 @@ function App() {
         </div> */}
         <div className="purpose-headers">
           <div className="header-labels type-header"></div>
-          {purposes.map((purpose, index) => <div key={purpose+"header"} className="purpose-header"><div className="purpose-header-text-tilt">{purpose}</div></div>)}
+          {uses.map((purpose, index) => (
+            <div key={purpose.category + "header"} className="purpose-header">
+              <div className="purpose-header-text-tilt">{purpose.category}</div>
+            </div>
+          ))}
         </div>
-        {dataTypes.map((type, index) => <div key={type + "-" + index} className="full-row row"><div className="type-header">{type}</div><InputRow key={type + "row" + index} /></div>)}
+        {types.map((section, index) => {
+          return (
+            <div key={section.category}>
+              <h2>{section.category}</h2>
+              {section.items.map((type, index) => (
+                <div key={type.name + "-" + index} className="full-row row">
+                  <div className="type-header">{type.name}</div>
+                  <InputRow key={type.name + "row" + index} />
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </div>
       <div className="app-preview">App store preview</div>
     </div>

@@ -1,0 +1,119 @@
+{
+  "data_types": [
+    {
+      "category": "Contact info",
+      "items": [
+        { "name": "Name" },
+        { "name": "Email address" },
+        { "name": "Phone number" },
+        { "name": "Physical address" },
+        { "name": "Other user contact info" }
+      ]
+    },
+    {
+      "category": "Health and fitness",
+      "items": [
+        { "name": "Health" },
+        { "name": "Fitness" }
+      ]
+    },
+    {
+      "category": "Financial info",
+      "items": [
+        { "name": "Payment info" },
+        { "name": "Credit info" },
+        { "name": "Other financial info" }
+      ]
+    },
+    {
+      "category": "Location",
+      "items": [
+        { "name": "Precise location" },
+        { "name": "Coarse location" }
+      ]
+    },
+    {
+      "category": "Sensitive info",
+      "items": [
+        { "name": "Sensitive info" }
+      ]
+    },
+    {
+      "category": "Contacts",
+      "items": [
+        { "name": "Contacts" }
+      ]
+    },
+    {
+      "category": "User content",
+      "items": [
+        { "name": "Emails or text messages" },
+        { "name": "Photos or videos" },
+        { "name": "Audio data" },
+        { "name": "Gameplay content" },
+        { "name": "Customer support" },
+        { "name": "Other user content" }
+      ]
+    },
+    {
+      "category": "Browsing history",
+      "items": [
+        { "name": "Browsing history" }
+      ]
+    },
+    {
+      "category": "Search history",
+      "items": [
+        { "name": "Search history" }
+      ]
+    },
+    {
+      "category": "Identifiers",
+      "items": [
+        { "name": "User ID" },
+        { "name": "Device ID" }
+      ]
+    },
+    {
+      "category": "Purchase history",
+      "items": [
+        { "name": "Purchase history" }
+      ]
+    },
+    {
+      "category": "Usage data",
+      "items": [
+        { "name": "Product interaction" },
+        { "name": "Advertising data" },
+        { "name": "Other usage data" }
+      ]
+    },
+    {
+      "category": "Diagnostics",
+      "items": [
+        { "name": "Crash data" },
+        { "name": "Performance data" },
+        { "name": "Other diagnostic data" }
+      ]
+    },
+    {
+      "category": "Surroundings",
+      "items": [
+        { "name": "Environment scanning" }
+      ]
+    },
+    {
+      "category": "Body",
+      "items": [
+        { "name": "Hands" },
+        { "name": "Head" }
+      ]
+    },
+    {
+      "category": "Other data types",
+      "items": [
+        { "name": "Other data types" }
+      ]
+    }
+  ]
+}

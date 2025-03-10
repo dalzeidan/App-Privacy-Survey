@@ -12,6 +12,10 @@
   color: black;
 }
 
+.page {
+  height: fit-content;
+}
+
 .survey-page {
   display: flex;
 }
@@ -54,6 +58,13 @@
 }
 
 .input-box {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
   width: 70px;
   height: 70px;
   background-color: greenyellow;
@@ -94,7 +105,7 @@
   width: 100%;
   align-items: flex-start;
   gap: -61px;
-  height: 150px;
+  height: 200px;
   background-color: rgb(209, 209, 209);
 }
 
@@ -110,5 +121,6 @@
   position: relative;
   top: 60%;
   left: 50%;
-  transform: translate(-20%, 253%) rotate(-40deg);
+  transform: translate(-20%, 253%) rotate(-35deg);
+  text-wrap: nowrap;
 }

@@ -1,0 +1,12 @@
+{
+  "data_use": [
+    { "category": "Third-party advertising" },
+    { "category": "Developer’s advertising or marketing" },
+    { "category": "Analytics" },
+    { "category": "Product personalization" },
+    { "category": "App functionality" },
+    { "category": "Other purposes" },
+    { "category": "Data linked to you" },
+    { "category": "Data not linked to you" }
+  ]
+}

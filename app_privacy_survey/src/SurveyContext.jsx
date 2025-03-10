@@ -1,11 +1,14 @@
 import { createContext, useState } from "react";
+import data_types from "./data_types.json";
+import data_use from "./data_use.json";
 
 export const SurveyContext = createContext();
 
 export function SurveyContextProvider({children}) {
+  const types = data_types.data_types;
+  const uses = data_use.data_use;
 
-  const [dataTypes, setDataTypes] = useState(["Name", "Email address", "Phone number", "Physical address", "Other user contact info"]);
-  const [purposes, setPurposeses] = useState(["Tracking", "Developer advertising", "Analytics", "Product personalization", "App functionality", "3rd party advertising", "Other purposes"]);
+  
   let defaultResponse = [{
     dataType: "", // name of data type
     purposes: [], // purposes associated with dataType
@@ -23,10 +26,9 @@ export function SurveyContextProvider({children}) {
     });
   }
 
-  defaultResponses = dataTypes.map((type,index) => {return {dataType: type, purposes:purposes, accessForPurpose: new Array(purposes.length)}})
   const [responses, setResponses] = useState(defaultResponses);
   return (
-    <SurveyContext.Provider value={{dataTypes,purposes, responses, setResponses}}>
+    <SurveyContext.Provider value={{types,uses, responses, setResponses}}>
       {children}
     </SurveyContext.Provider>
   )
