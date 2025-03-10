@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
-import data_types from "./data_types.json";
-import data_use from "./data_use.json";
+import data_types from "./data/data_types.json";
+import data_use from "./data/data_use.json";
 
 export const SurveyContext = createContext();
 
