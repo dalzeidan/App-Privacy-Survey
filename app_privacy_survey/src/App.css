@@ -102,8 +102,10 @@
 
 .purpose-headers {
   display: flex;
+  position:sticky;
+  top:0;
   width: 100%;
-  align-items: flex-start;
+  align-items: center;
   gap: -61px;
   height: 200px;
   background-color: rgb(209, 209, 209);
@@ -121,6 +123,6 @@
   position: relative;
   top: 60%;
   left: 50%;
-  transform: translate(-20%, 253%) rotate(-35deg);
+  transform: translate(-18%, 140%) rotate(-35deg);
   text-wrap: nowrap;
 }
