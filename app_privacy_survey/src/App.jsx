@@ -1,80 +1,81 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import InputRow from "./InputRow";
 import { SurveyContext } from "./SurveyContext";
 
 function App() {
-  const { types, uses } = useContext(SurveyContext);
+  const { types, uses, getSurveyData, validateSurvey, exportData } = useContext(SurveyContext);
+  const [surveyCompleted, setSurveyCompleted] = useState(false);
+  const [surveyResults, setSurveyResults] = useState(null);
+
+  const handleSubmit = () => {
+    if (validateSurvey()) {
+      const results = exportData();
+      setSurveyResults(results);
+      setSurveyCompleted(true);
+      console.log("Survey submitted:", results);
+      // You can also send the results to your backend here
+    } else {
+      console.log("Survey validation failed");
+      // Handle validation errors
+    }
+  };
+  
+  const handleLogData = () => {
+    console.log("Current data:", getSurveyData());
+  };
+
+  // Show results if survey is completed
+  if (surveyCompleted && surveyResults) {
+    return (
+      <div className="page">
+        <h2>Survey Completed</h2>
+        <div>
+          <h3>Your Responses:</h3>
+          <pre>{JSON.stringify(surveyResults, null, 2)}</pre>
+          <button onClick={() => setSurveyCompleted(false)}>Back to Survey</button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="page survey-page">
       <div className="survey">
-        {/* <div className="survey-group">
-          <h2 className="group-label">Group Label</h2>
-          <div className="properties">
-            <div className="survey-headers table">
-              <div className="survey-header">Type</div>
-              <div className="survey-header">Extent of access</div>
-              <div className="survey-header">Purpose</div>
-            </div>
-            <div className="item-container table">
-              <div className="item">
-                <div className="item-name">Name</div>
-                <div className="item-desc">Description</div>
-              </div>
-              <div className="item-selections">
-                <div className="item-select">
-                  <div className="item-select-label">None</div>
-                  <input type="checkbox"></input>
-                </div>
-                <div className="item-select">
-                  <div className="item-select-label">Limited</div>
-                  <input type="checkbox"></input>
-                </div>
-                <div className="item-select">
-                  <div className="item-select-label">3rd Party</div>
-                  <input type="checkbox"></input>
-                </div>
-              </div>
-              <div className="item-selections">
-                <div className="item-select">
-                  <div className="item-select-label">None</div>
-                  <input type="checkbox"></input>
-                </div>
-                <div className="item-select">
-                  <div className="item-select-label">Identification</div>
-                  <input type="checkbox"></input>
-                </div>
-                <div className="item-select">
-                  <div className="item-select-label">Tracking</div>
-                  <input type="checkbox"></input>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className="purpose-headers">
           <div className="header-labels type-header"></div>
-          {uses.map((purpose, index) => (
+          {uses.map((purpose) => (
             <div key={purpose.category + "header"} className="purpose-header">
               <div className="purpose-header-text-tilt">{purpose.category}</div>
             </div>
           ))}
         </div>
-        {types.map((section, index) => {
+        {types.map((section) => {
           return (
             <div key={section.category}>
               <h2>{section.category}</h2>
-              {section.items.map((type, index) => (
-                <div key={type.name + "-" + index} className="full-row row">
+              {section.items.map((type) => (
+                <div key={type.name} className="full-row row">
                   <div className="type-header">{type.name}</div>
-                  <InputRow key={type.name + "row" + index} />
+                  <InputRow typeName={type.name} />
                 </div>
               ))}
             </div>
           );
         })}
+        
+        <div className="survey-controls" style={{ margin: "20px 0", textAlign: "center" }}>
+          <button onClick={handleSubmit}>Submit Survey</button>
+        </div>
       </div>
-      <div className="app-preview">App store preview</div>
+      <div className="app-preview">
+        App store preview
+        
+        {/* Add a button to view current data */}
+        <button onClick={handleLogData}>
+          Log Current Data
+        </button>
+      </div>
     </div>
   );
 }
