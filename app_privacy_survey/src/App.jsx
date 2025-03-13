@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "./App.css";
 import InputRow from "./InputRow";
 import { SurveyContext } from "./SurveyContext";
+import exampleApp from "./assets/1exampleAppStore.jpeg"
 
 function App() {
   const { types, uses, getSurveyData, validateSurvey, exportData } = useContext(SurveyContext);
@@ -69,12 +70,14 @@ function App() {
         </div>
       </div>
       <div className="app-preview">
-        App store preview
+        <div className="app-preview-header">
+          App store preview
+          <button onClick={handleLogData}>
+            Log Current Data
+          </button>
+        </div>
         
-        {/* Add a button to view current data */}
-        <button onClick={handleLogData}>
-          Log Current Data
-        </button>
+        <img src={exampleApp} width={"100%"}/>
       </div>
     </div>
   );

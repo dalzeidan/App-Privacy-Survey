@@ -54,7 +54,7 @@ export function SurveyContextProvider({children}) {
   const updateResponse = (dataType, purpose, value) => {
     if (surveyModel) {
       // Update the value in the SurveyJS model
-      surveyModel.setValue(`${dataType}.${purpose}`, value);
+      surveyModel.setValue(`${dataType}.${purpose}`, value); // Unclear if correct way to update model
       
       // Also update our local state (for immediate UI updates)
       const updatedResponses = {...responses};
