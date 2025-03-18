@@ -4,7 +4,7 @@ import { SurveyContext } from "./SurveyContext";
 export default function InputBox({ typeName, purposeCategory, index }) {
   const { updateResponse, responses } = useContext(SurveyContext);
   
-  // Initialize with a default state (green)
+  // input box has the default state of being green (0)
   const [level, setLevel] = useState(0);
   
   // Update from survey data if available
@@ -19,25 +19,25 @@ export default function InputBox({ typeName, purposeCategory, index }) {
   }, [responses, typeName, purposeCategory]);
 
   const handleClick = () => {
-    // Cycle through levels: 0 (green) -> 1 (orange) -> 2 (red) -> 0 (green)
+    // select which color is gonna transition on click: 0 (green) -> 1 (orange) -> 2 (red) -> 0 (green)
     const newLevel = (level + 1) % 3;
     
-    // Update local state
+    //local state value update
     setLevel(newLevel);
     
-    // Update the survey model
+    // survey model value update
     updateResponse(typeName, purposeCategory, newLevel);
   };
 
   const getColor = (level) => {
     if (level === 0) {
-      return "green"; // Green
+      return "green";
     } else if (level === 1) {
-      return "orange"; // Orange
+      return "orange";
     } else if (level === 2) {
-      return "red"; // Red
+      return "red";
     }
-    return "grey"; // Default
+    return "grey";
   };
   
   return (

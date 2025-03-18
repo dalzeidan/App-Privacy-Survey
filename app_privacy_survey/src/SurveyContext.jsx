@@ -9,54 +9,51 @@ export function SurveyContextProvider({children}) {
   const types = data_types.data_types;
   const uses = data_use.data_use;
   
-  // Create a SurveyJS model to handle responses
+  // this is the SurveyJS model for responses
   const [surveyModel, setSurveyModel] = useState(null);
   const [responses, setResponses] = useState({});
   
   // Initialize SurveyJS model
   useEffect(() => {
-    // Create an empty survey model
     const model = new Model();
     
     // Configure survey settings
     model.showCompletedPage = false;
     model.showNavigationButtons = false;
     
-    // Initialize the data structure in the model
     const initialData = {};
     
     // Create a structured data object for each type and purpose
     types.forEach(section => {
       section.items.forEach(type => {
-        // Create an entry for each data type
-        initialData[type.name] = {};
+        initialData[type.name] = {}; // name of data type
         
-        // Add entries for each purpose with default value 0 (green)
+        // sets the initial survey states as green (0)
         uses.forEach(purpose => {
-          initialData[type.name][purpose.category] = 0; // Initialize all to green (0)
+          initialData[type.name][purpose.category] = 0;
         });
       });
     });
     
-    // Set the initial data
+    // this is the initial state of the survey
     model.data = initialData;
     setSurveyModel(model);
     setResponses(initialData);
     
-    // Add event listener for changes
+    // event listener for changing an answer in the survey
     model.onValueChanged.add((sender, options) => {
       console.log("Data changed:", options.name, options.value);
       setResponses({...sender.data});
     });
   }, [types, uses]);
   
-  // Function to update a specific response value
+  // updates a response value
   const updateResponse = (dataType, purpose, value) => {
     if (surveyModel) {
-      // Update the value in the SurveyJS model
-      surveyModel.setValue(`${dataType}.${purpose}`, value); // Unclear if correct way to update model
+      // survey JS model state update
+      surveyModel.setValue(`${dataType}.${purpose}`, value);
       
-      // Also update our local state (for immediate UI updates)
+      // local state update
       const updatedResponses = {...responses};
       if (!updatedResponses[dataType]) {
         updatedResponses[dataType] = {};
@@ -66,12 +63,11 @@ export function SurveyContextProvider({children}) {
     }
   };
   
-  // Function to get the current data as JSON
+  // gets current responses as a JSON
   const getSurveyData = () => {
     return surveyModel ? surveyModel.data : {};
   };
   
-  // Function to validate the entire survey
   const validateSurvey = () => {
     if (surveyModel) {
       return surveyModel.validate();
@@ -79,11 +75,10 @@ export function SurveyContextProvider({children}) {
     return false;
   };
   
-  // Function to export data in a specific format if needed
+  //exports data in a specific format if needed
   const exportData = () => {
     if (!surveyModel) return null;
     
-    // Transform the data into your desired output format
     const result = [];
     
     Object.entries(surveyModel.data).forEach(([dataType, purposes]) => {
@@ -94,8 +89,8 @@ export function SurveyContextProvider({children}) {
         restrict: []
       };
       
+      // adds all responses to the response object
       Object.entries(purposes).forEach(([purpose, level]) => {
-        // Include all values - we can filter if needed
         dataTypeEntry.purposes.push(purpose);
         dataTypeEntry.accessForPurpose.push(level);
         dataTypeEntry.restrict.push([]);
