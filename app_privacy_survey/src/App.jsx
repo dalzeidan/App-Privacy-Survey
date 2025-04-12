@@ -15,7 +15,8 @@ function App() {
       setSurveyResults(results);
       setSurveyCompleted(true);
       console.log("Survey submitted:", results);
-      // You can also send the results to your backend here
+      // TODO:
+      // send the response object to the backend on submission
     } else {
       console.log("Survey validation failed");
       // Handle validation errors
