@@ -19,7 +19,7 @@ export default function InputBox({ typeName, purposeCategory, index }) {
   }, [responses, typeName, purposeCategory]);
 
   const handleClick = () => {
-    // select which color is gonna transition on click: 0 (green) -> 1 (orange) -> 2 (red) -> 0 (green)
+    // select which color is going to transition on click: 0 (green) -> 1 (orange) -> 2 (red) -> 0 (green)
     const newLevel = (level + 1) % 3;
     
     //local state value update

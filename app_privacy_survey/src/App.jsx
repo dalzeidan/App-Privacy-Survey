@@ -15,11 +15,27 @@ function App() {
       setSurveyResults(results);
       setSurveyCompleted(true);
       console.log("Survey submitted:", results);
-      // TODO:
-      // send the response object to the backend on submission
+  
+      // Send results directly to backend
+      fetch('http://localhost:3000/api/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(results), // This will now be an object, not an array
+      })
+        .then(res => {
+          if (!res.ok) throw new Error("Failed to submit survey");
+          return res.json();
+        })
+        .then(data => {
+          console.log("Successfully saved survey:", data);
+        })
+        .catch(err => {
+          console.error("Error submitting survey:", err);
+        });
     } else {
       console.log("Survey validation failed");
-      // Handle validation errors
     }
   };
   
