@@ -61,7 +61,23 @@ function App() {
     <div className="page survey-page">
       <div className="survey">
         <div className="purpose-headers">
-          <div className="header-labels type-header"></div>
+          <div className="header-labels type-header">
+          <div>Data Types</div>
+            <div className="answer-legend">
+              <div className="answer-item">
+                <div className="color-box color-green"></div>
+                <span>Answer 1</span>
+              </div>
+              <div className="answer-item">
+                <div className="color-box color-orange"></div>
+                <span>Answer 2</span>
+              </div>
+              <div className="answer-item">
+                <div className="color-box color-red"></div>
+                <span>Answer 3</span>
+              </div>
+            </div>
+          </div>
           {uses.map((purpose) => (
             <div key={purpose.category + "header"} className="purpose-header">
               <div className="purpose-header-text-tilt">{purpose.category}</div>
@@ -70,7 +86,7 @@ function App() {
         </div>
         {types.map((section) => {
           return (
-            <div key={section.category}>
+            <div key={section.category} className = "data-type-section">
               <h2>{section.category}</h2>
               {section.items.map((type) => (
                 <div key={type.name} className="full-row row">
@@ -88,10 +104,7 @@ function App() {
       </div>
       <div className="app-preview">
         <div className="app-preview-header">
-          App store preview
-          <button onClick={handleLogData}>
-            Log Current Data
-          </button>
+          App Store Preview
         </div>
         
         <img src={exampleApp} width={"100%"}/>
