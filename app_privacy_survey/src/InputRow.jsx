@@ -12,7 +12,6 @@ export default function InputRow({ typeName }) {
           key={`${typeName}-${purpose.category}-${index}`}
           typeName={typeName}
           purposeCategory={purpose.category}
-          index={index}
         />
       ))}
     </div>

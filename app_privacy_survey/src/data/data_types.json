@@ -1,41 +1,41 @@
 {
   "data_types": [
     {
-      "category": "Contact info",
+      "category": "Contact Info",
       "items": [
         { "name": "Name" },
-        { "name": "Email address" },
-        { "name": "Phone number" },
-        { "name": "Physical address" },
-        { "name": "Other user contact info" }
+        { "name": "Email Address" },
+        { "name": "Phone Number" },
+        { "name": "Physical Address" },
+        { "name": "Other User Contact Info" }
       ]
     },
     {
-      "category": "Health and fitness",
+      "category": "Health and Fitness",
       "items": [
         { "name": "Health" },
         { "name": "Fitness" }
       ]
     },
     {
-      "category": "Financial info",
+      "category": "Financial Info",
       "items": [
-        { "name": "Payment info" },
-        { "name": "Credit info" },
-        { "name": "Other financial info" }
+        { "name": "Payment Info" },
+        { "name": "Credit Info" },
+        { "name": "Other Financial Info" }
       ]
     },
     {
       "category": "Location",
       "items": [
-        { "name": "Precise location" },
-        { "name": "Coarse location" }
+        { "name": "Precise Location" },
+        { "name": "Coarse Location" }
       ]
     },
     {
-      "category": "Sensitive info",
+      "category": "Sensitive Info",
       "items": [
-        { "name": "Sensitive info" }
+        { "name": "Sensitive Info" }
       ]
     },
     {
@@ -45,26 +45,26 @@
       ]
     },
     {
-      "category": "User content",
+      "category": "User Content",
       "items": [
-        { "name": "Emails or text messages" },
-        { "name": "Photos or videos" },
-        { "name": "Audio data" },
-        { "name": "Gameplay content" },
-        { "name": "Customer support" },
-        { "name": "Other user content" }
+        { "name": "Emails or Text Messages" },
+        { "name": "Photos or Videos" },
+        { "name": "Audio Data" },
+        { "name": "Gameplay Content" },
+        { "name": "Customer Support" },
+        { "name": "Other User Content" }
       ]
     },
     {
-      "category": "Browsing history",
+      "category": "Browsing History",
       "items": [
-        { "name": "Browsing history" }
+        { "name": "Browsing History" }
       ]
     },
     {
-      "category": "Search history",
+      "category": "Search History",
       "items": [
-        { "name": "Search history" }
+        { "name": "Search History" }
       ]
     },
     {
@@ -75,31 +75,31 @@
       ]
     },
     {
-      "category": "Purchase history",
+      "category": "Purchase History",
       "items": [
-        { "name": "Purchase history" }
+        { "name": "Purchase History" }
       ]
     },
     {
-      "category": "Usage data",
+      "category": "Usage Data",
       "items": [
-        { "name": "Product interaction" },
-        { "name": "Advertising data" },
-        { "name": "Other usage data" }
+        { "name": "Product Interaction" },
+        { "name": "Advertising Data" },
+        { "name": "Other Usage Data" }
       ]
     },
     {
       "category": "Diagnostics",
       "items": [
-        { "name": "Crash data" },
-        { "name": "Performance data" },
-        { "name": "Other diagnostic data" }
+        { "name": "Crash Data" },
+        { "name": "Performance Data" },
+        { "name": "Other Diagnostic Data" }
       ]
     },
     {
       "category": "Surroundings",
       "items": [
-        { "name": "Environment scanning" }
+        { "name": "Environment Scanning" }
       ]
     },
     {
@@ -110,9 +110,9 @@
       ]
     },
     {
-      "category": "Other data types",
+      "category": "Other Data Types",
       "items": [
-        { "name": "Other data types" }
+        { "name": "Other Data Types" }
       ]
     }
   ]

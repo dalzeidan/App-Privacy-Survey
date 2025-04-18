@@ -22,15 +22,15 @@ export function SurveyContextProvider({children}) {
     model.showNavigationButtons = false;
     
     const initialData = {};
-    
+
     // Create a structured data object for each type and purpose
     types.forEach(section => {
       section.items.forEach(type => {
         initialData[type.name] = {}; // name of data type
-        
-        // sets the initial survey states as green (0)
+
+        // sets the initial survey states as 0 for each purpose
         uses.forEach(purpose => {
-          initialData[type.name][purpose.category] = 0;
+          initialData[type.name][purpose.category] = 0; // Each purpose gets a 0 value
         });
       });
     });
@@ -47,21 +47,30 @@ export function SurveyContextProvider({children}) {
     });
   }, [types, uses]);
   
-  // updates a response value
-  const updateResponse = (dataType, purpose, value) => {
-    if (surveyModel) {
-      // survey JS model state update
-      surveyModel.setValue(`${dataType}.${purpose}`, value);
-      
-      // local state update
-      const updatedResponses = {...responses};
-      if (!updatedResponses[dataType]) {
-        updatedResponses[dataType] = {};
-      }
-      updatedResponses[dataType][purpose] = value;
-      setResponses(updatedResponses);
+// Updated updateResponse function to avoid using dot notation
+const updateResponse = (dataType, purpose, value) => {
+  if (surveyModel) {
+    // Get the current data for this data type
+    const currentTypeData = surveyModel.data[dataType] || {};
+    
+    // Update the specific purpose value
+    const updatedTypeData = {
+      ...currentTypeData,
+      [purpose]: value
+    };
+    
+    // Set the entire data object for this data type
+    surveyModel.setValue(dataType, updatedTypeData);
+    
+    // Update local state
+    const updatedResponses = {...responses};
+    if (!updatedResponses[dataType]) {
+      updatedResponses[dataType] = {};
     }
-  };
+    updatedResponses[dataType][purpose] = value;
+    setResponses(updatedResponses);
+  }
+};
   
   // gets current responses as a JSON
   const getSurveyData = () => {
@@ -75,31 +84,18 @@ export function SurveyContextProvider({children}) {
     return false;
   };
   
-  //exports data in a specific format if needed
   const exportData = () => {
     if (!surveyModel) return null;
-    
-    const result = [];
-    
+  
+    const document = {
+      responses: {}
+    };
+  
     Object.entries(surveyModel.data).forEach(([dataType, purposes]) => {
-      const dataTypeEntry = {
-        dataType: dataType,
-        purposes: [],
-        accessForPurpose: [],
-        restrict: []
-      };
-      
-      // adds all responses to the response object
-      Object.entries(purposes).forEach(([purpose, level]) => {
-        dataTypeEntry.purposes.push(purpose);
-        dataTypeEntry.accessForPurpose.push(level);
-        dataTypeEntry.restrict.push([]);
-      });
-      
-      result.push(dataTypeEntry);
+      document.responses[dataType] = { ...purposes };
     });
-    
-    return result;
+  
+    return document;
   };
   
   return (
