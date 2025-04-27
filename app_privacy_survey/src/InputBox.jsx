@@ -5,7 +5,7 @@ export default function InputBox({ typeName, purposeCategory, index }) {
   const { updateResponse, responses } = useContext(SurveyContext);
   
   // input box has the default state of being green (0)
-  const [level, setLevel] = useState(0);
+  const [level, setLevel] = useState(-1);
   
   // Update from survey data if available
   useEffect(() => {
