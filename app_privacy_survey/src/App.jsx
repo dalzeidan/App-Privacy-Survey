@@ -5,7 +5,8 @@ import { SurveyContext } from "./SurveyContext";
 import exampleApp from "./assets/1exampleAppStore.jpeg"
 
 function App() {
-  const { types, uses, getSurveyData, validateSurvey, exportData } = useContext(SurveyContext);
+  const { types, uses, getSurveyData, validateSurvey, exportData, isDragging,
+    clickAllDivs } = useContext(SurveyContext);
   const [surveyCompleted, setSurveyCompleted] = useState(false);
   const [surveyResults, setSurveyResults] = useState(null);
 
@@ -60,6 +61,10 @@ function App() {
 
   return (
     <div className="page survey-page">
+      <div className={`multi-select-box ${isDragging ? "fixed": "hide"}`}>
+        Selecting multiple
+        <button onClick={clickAllDivs}>Toggle</button>
+      </div>
       <div className="survey">
         <div className="purpose-headers">
           <div className="header-labels type-header">

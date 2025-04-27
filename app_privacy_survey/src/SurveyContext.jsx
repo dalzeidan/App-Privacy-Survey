@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 import data_types from "./data/data_types.json";
 import data_use from "./data/data_use.json";
 import { Model } from "survey-core";
@@ -6,6 +6,34 @@ import { Model } from "survey-core";
 export const SurveyContext = createContext();
 
 export function SurveyContextProvider({children}) {
+  //Cursor Drag context
+  const [isDragging, setIsDragging] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  // const [selectedLevel, setselectedLevel] = useState()
+  const selected = useRef([]);
+  const updatingRef = useRef(updating);
+
+  const registerDiv = (el) => {
+    console.log(selected)
+    if (el && !selected.current.includes(el.target)) {
+      selected.current.push(el.target);
+    } else if ( el && selected.current.includes(el.target)) {
+      selected.current.filter((elm) => elm != el.target);
+    }
+  };
+
+  const clickAllDivs = () => {
+    setUpdating(false);
+    console.log("clicking: ", selected)
+    selected.current.forEach(div => {
+      if (div) {
+        console.log(div)
+        div.click(); // or any other function you want to call
+      }
+    });
+    setUpdating(true);
+  };
+
   const types = data_types.data_types;
   const uses = data_use.data_use;
   
@@ -107,7 +135,9 @@ const updateResponse = (dataType, purpose, value) => {
       updateResponse,
       getSurveyData,
       validateSurvey,
-      exportData
+      exportData,
+      isDragging,setIsDragging,
+      selected, registerDiv, clickAllDivs,updatingRef
     }}>
       {children}
     </SurveyContext.Provider>
