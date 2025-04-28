@@ -3,116 +3,116 @@
     {
       "category": "Contact Info",
       "items": [
-        { "name": "Name" },
-        { "name": "Email Address" },
-        { "name": "Phone Number" },
-        { "name": "Physical Address" },
-        { "name": "Other User Contact Info" }
+        { "name": "Name","description": "Such as first or last name." },
+        { "name": "Email Address","description": "Including but not limited to a hashed email address."},
+        { "name": "Phone Number","description": "Including but not limited to a hashed phone number."},
+        { "name": "Physical Address","description": "Such as a home address, physical address, or mailing address"},
+        { "name": "Other User Contact Info","description": "Any other information that can be used to contact you outside the app."}
       ]
     },
     {
       "category": "Health and Fitness",
       "items": [
-        { "name": "Health" },
-        { "name": "Fitness" }
+        { "name": "Health","description": "Health and medical data, including but not limited to information from the Clinical Health Records API, HealthKit API, and Movement Disorder API, or from health-related human subject research or any other health or medical data that you provide."},
+        { "name": "Fitness","description": "Fitness and exercise data."}
       ]
     },
     {
       "category": "Financial Info",
       "items": [
-        { "name": "Payment Info" },
-        { "name": "Credit Info" },
-        { "name": "Other Financial Info" }
+        { "name": "Payment Info","description": "Such as form of payment, payment card number, or bank account number. If an app uses a payment service and the payment information is entered outside the app, the information will not appear in this section."},
+        { "name": "Credit Info","description": "Such as credit score"},
+        { "name": "Other Financial Info","description": "Such as salary, income, assets, debts, or any other financial information."}
       ]
     },
     {
       "category": "Location",
       "items": [
-        { "name": "Precise Location" },
-        { "name": "Coarse Location" }
+        { "name": "Precise Location","description": "Information that describes your location with the same or greater resolution as a latitude and longitude with three or more decimal places."},
+        { "name": "Coarse Location","description": "Information that describes your location with lower resolution than a latitude and longitude with three or more decimal places, such as from Approximate Location Services."}
       ]
     },
     {
       "category": "Sensitive Info",
       "items": [
-        { "name": "Sensitive Info" }
+        { "name": "Sensitive Info","description": "Such as racial or ethnic data, sexual orientation, pregnancy or childbirth information, disability, religious or philosophical beliefs, trade union membership, political opinion, genetic information, or biometric data."}
       ]
     },
     {
       "category": "Contacts",
       "items": [
-        { "name": "Contacts" }
+        { "name": "Contacts","description": "Such as a list of contacts, address book, or social graph."}
       ]
     },
     {
       "category": "User Content",
       "items": [
-        { "name": "Emails or Text Messages" },
-        { "name": "Photos or Videos" },
-        { "name": "Audio Data" },
-        { "name": "Gameplay Content" },
-        { "name": "Customer Support" },
-        { "name": "Other User Content" }
+        { "name": "Emails or Text Messages","description": "Including subject line, sender, recipients, and contents of the email or message."},
+        { "name": "Photos or Videos","description": "Your photos or videos."},
+        { "name": "Audio Data","description": "Your voice or sound recordings."},
+        { "name": "Gameplay Content","description": "Such as content you generate in-game."},
+        { "name": "Customer Support","description": "Data you generate during a customer support request."},
+        { "name": "Other User Content","description": "Any other content you generate."}
       ]
     },
     {
       "category": "Browsing History",
       "items": [
-        { "name": "Browsing History" }
+        { "name": "Browsing History","description": "Information about the content you have viewed that is not part of the app, such as websites."}
       ]
     },
     {
       "category": "Search History",
       "items": [
-        { "name": "Search History" }
+        { "name": "Search History","description": "Information about searches performed in the app."}
       ]
     },
     {
       "category": "Identifiers",
       "items": [
-        { "name": "User ID" },
-        { "name": "Device ID" }
+        { "name": "User ID","description": "Such as screen name, handle, account ID, assigned user ID, customer number, probabilistic identifier, or other user- or account-level ID that can be used to identify you or your account."},
+        { "name": "Device ID","description": "Such as the device’s advertising identifier or other device-level ID."}
       ]
     },
     {
       "category": "Purchase History",
       "items": [
-        { "name": "Purchase History" }
+        { "name": "Purchase History","description": "Your purchases or purchase tendencies."}
       ]
     },
     {
       "category": "Usage Data",
       "items": [
-        { "name": "Product Interaction" },
-        { "name": "Advertising Data" },
-        { "name": "Other Usage Data" }
+        { "name": "Product Interaction","description": "Such as app launches, taps, clicks, scrolling information, music-listening data, video views, saved place in a game, video, or song, or other information about how you interact with the app."},
+        { "name": "Advertising Data","description": "Such as information about the advertisements you have viewed."},
+        { "name": "Other Usage Data","description": "Any other data about your activity in the app."}
       ]
     },
     {
       "category": "Diagnostics",
       "items": [
-        { "name": "Crash Data" },
-        { "name": "Performance Data" },
-        { "name": "Other Diagnostic Data" }
+        { "name": "Crash Data","description": "Such as crash logs."},
+        { "name": "Performance Data","description": "Such as launch time, hang rate, or energy use."},
+        { "name": "Other Diagnostic Data","description": "Any other data collected for the purposes of measuring technical diagnostics related to the app."}
       ]
     },
     {
       "category": "Surroundings",
       "items": [
-        { "name": "Environment Scanning" }
+        { "name": "Environment Scanning","description": "Such as mesh, planes, scene classification, and/or image detection of the user’s surroundings."}
       ]
     },
     {
       "category": "Body",
       "items": [
-        { "name": "Hands" },
-        { "name": "Head" }
+        { "name": "Hands","description": "The user’s hand structure and hand movements."},
+        { "name": "Head","description": "The user’s head movement."}
       ]
     },
     {
       "category": "Other Data Types",
       "items": [
-        { "name": "Other Data Types" }
+        { "name": "Other Data Types","description": "Any other data types not mentioned."}
       ]
     }
   ]

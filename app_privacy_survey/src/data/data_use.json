@@ -1,12 +1,12 @@
 {
   "data_use": [
-    { "category": "Third-Party Advertising" },
-    { "category": "Developer’s Advertising or Marketing" },
-    { "category": "Analytics" },
-    { "category": "Product Personalization" },
-    { "category": "App Functionality" },
-    { "category": "Other Purposes" },
-    { "category": "Data Linked to You" },
-    { "category": "Data Not Linked to You" }
+    { "category": "Third-Party Advertising", "description": "Such as displaying third-party ads in the app or sharing data with entities who display third-party ads."},
+    { "category": "Developer’s Advertising or Marketing", "description": "Such as displaying the developer’s own ads in the app, sending marketing communications directly to you, or sharing data with entities who will display ads to you." },
+    { "category": "Analytics", "description": "Using data to evaluate your behavior, including to understand the effectiveness of existing product features, plan new features, or measure audience size or characteristics." },
+    { "category": "Product Personalization", "description": "Customizing what you see, such as a list of recommended products, posts, or suggestions." },
+    { "category": "App Functionality", "description": "Such as to authenticate you in the app, enable features, prevent fraud, implement security measures, ensure server uptime, minimize app crashes, improve scalability and performance, or perform customer support." },
+    { "category": "Other Purposes", "description": "Any other usage not listed." },
+    { "category": "Identification Data", "description": "Data Linked to You\n\nData that is linked to your identity (via your account, device, or other details).\n\n“Personal information” and “personal data” as defined under relevant privacy laws are considered linked to you. In order for data to not be linked to you, the developer must avoid certain activities after they collect it:\n\n• They must make no attempt to link the data back to your identity.\n\n• They must not tie the data to other data sets that enable it to be linked to your identity." },
+    { "category": "Tracking Data", "description": "Data used to track you\n\n Tracking occurs when data collected about you or your device is linked with third-party data for targeted advertising or advertising measurement purposes. Tracking can also occur when data about you or your device is shared with a data broker.\n\nTracking does not apply in the following situations:\n\n• When the data is linked solely on your device and is not sent off the device in a way that can identify you or your device.\n\n• When the data broker uses the data shared with them solely for fraud detection and prevention or for security purposes, and solely on the developer’s behalf." }
   ]
 }
