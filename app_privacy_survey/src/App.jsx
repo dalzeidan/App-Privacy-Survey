@@ -79,19 +79,19 @@ function App() {
           <div className="header-labels type-header">
             {popupText == "" ? (
               <>
-                <div>Data Types</div>
+                <div>Data Access</div>
                 <div className="answer-legend">
                   <div className="answer-item">
                     <div className="color-box color-green"></div>
-                    <span>Answer 1</span>
+                    <span>Not collected</span>
                   </div>
                   <div className="answer-item">
                     <div className="color-box color-orange"></div>
-                    <span>Answer 2</span>
+                    <span>Used internally</span>
                   </div>
                   <div className="answer-item">
                     <div className="color-box color-red"></div>
-                    <span>Answer 3</span>
+                    <span>Shared to 3rd party</span>
                   </div>
                 </div>
               </>
