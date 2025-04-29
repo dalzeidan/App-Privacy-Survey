@@ -66,15 +66,15 @@ function App() {
             <div className="answer-legend">
               <div className="answer-item">
                 <div className="color-box color-green"></div>
-                <span>Answer 1</span>
+                <span>Data Not Linked to You</span>
               </div>
               <div className="answer-item">
                 <div className="color-box color-orange"></div>
-                <span>Answer 2</span>
+                <span>Data Linked to You</span>
               </div>
               <div className="answer-item">
                 <div className="color-box color-red"></div>
-                <span>Answer 3</span>
+                <span>Data Used to Track You</span>
               </div>
             </div>
           </div>
