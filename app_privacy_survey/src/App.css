@@ -14,6 +14,10 @@
   display: none;
 }
 
+.pointer-none {
+  pointer-events: none;
+}
+
 .multi-select-box {
   background-color: white;
   color: grey;
