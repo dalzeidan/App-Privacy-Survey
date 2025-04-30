@@ -34,12 +34,12 @@ export function SurveyContextProvider({children}) {
         
         setColorCycleCount(prev => ({
           ...prev,
-          [type.name]: 0
+          [type.name]: 0 // sets the starting cycle count for a data type as 0
         }));
 
         // sets the initial survey states as 0 for each purpose
         uses.forEach(purpose => {
-          initialData[type.name][purpose.category] = 0; // Each purpose gets a 0 value
+          initialData[type.name][purpose.category] = 0; // each purpose gets a starts with 0
         });
       });
     });
@@ -58,7 +58,7 @@ export function SurveyContextProvider({children}) {
     });
   }, [types, uses]);
   
-  const trackColorCycle = (dataType, oldValue, newValue) => { // adds count everytime the survey participant cycles back to green
+  const trackColorCycle = (dataType, oldValue, newValue) => { // adds count everytime the survey participant cycles back to green for a data type
     if (newValue === 0 && oldValue !== 0) {
       setColorCycleCount(prev => ({
         ...prev,
@@ -67,7 +67,7 @@ export function SurveyContextProvider({children}) {
     }
   };
 
-// Updated updateResponse function to avoid using dot notation
+  // Updated updateResponse function to avoid using dot notation
   const updateResponse = (dataType, purpose, value) => {
     if (surveyModel) {
       // Get the current data for this data type
