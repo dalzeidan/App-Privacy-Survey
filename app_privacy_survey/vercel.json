@@ -1,0 +1,9 @@
+{
+    "functions": {
+      "api/data.js": {
+        "memory": 256,
+        "maxDuration": 30,
+        "regions": ["iad1"]
+      }
+    }
+  }
