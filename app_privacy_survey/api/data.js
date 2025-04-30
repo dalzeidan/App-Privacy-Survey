@@ -1,48 +1,44 @@
-// api/data.js
-import express from 'express';
-import serverless from 'serverless-http';
-import { MongoClient, ServerApiVersion } from 'mongodb';
-import dotenv from 'dotenv';
-import cors from 'cors';
+import { MongoClient, ServerApiVersion } from "mongodb";
 
-dotenv.config();
+const uri = process.env.MONGODB_URI;
+const dbName = process.env.DB_NAME;
+const collectionName = process.env.COLLECTION_NAME;
 
-const app = express();
-app.use(express.json());
-app.use(cors());
+let cachedClient = null;
 
-// Create and start the Mongo client at import time
-const client = new MongoClient(process.env.MONGODB_URI, {
-  serverApi: { version: ServerApiVersion.v1 },
-});
+async function connectToDatabase() {
+  if (cachedClient) return cachedClient;
 
-// Kick off the connection *immediately* and reuse it
-const clientPromise = client.connect().then(() => {
-  console.log("✅ MongoDB connected");
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
+
+  await client.connect();
+  cachedClient = client;
   return client;
-}).catch(err => {
-  console.error("❌ MongoDB connection failed", err);
-  throw err;
-});
+}
 
-app.get('/', async (req, res) => {
-  // Wait for the initial connection promise
-  const dbClient = await clientPromise;
-  const data = await dbClient
-    .db(process.env.DB_NAME)
-    .collection(process.env.COLLECTION_NAME)
-    .find()
-    .toArray();
-  res.json(data);
-});
+export default async function handler(req, res) {
+  try {
+    const client = await connectToDatabase();
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
 
-app.post('/', async (req, res) => {
-  const dbClient = await clientPromise;
-  const result = await dbClient
-    .db(process.env.DB_NAME)
-    .collection(process.env.COLLECTION_NAME)
-    .insertOne(req.body);
-  res.status(201).json(result);
-});
-
-export default serverless(app);
+    if (req.method === "POST") {
+      const result = await collection.insertOne(req.body);
+      return res.status(201).json({ insertedId: result.insertedId });
+    } else if (req.method === "GET") {
+      const data = await collection.find().toArray();
+      return res.status(200).json(data);
+    } else {
+      return res.status(405).json({ error: "Method Not Allowed" });
+    }
+  } catch (err) {
+    console.error("MongoDB error:", err);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
