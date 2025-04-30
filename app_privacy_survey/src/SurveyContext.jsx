@@ -127,10 +127,8 @@ export function SurveyContextProvider({children}) {
     };
   
     // build object for survey responses
-    const safeSurveyData = JSON.parse(JSON.stringify(surveyModel.data)); // deep clone
-
-    Object.entries(safeSurveyData).forEach(([dataType, purposes]) => {
-      document.responses[dataType] = purposes;
+    Object.entries(surveyModel.data).forEach(([dataType, purposes]) => {
+      document.responses[dataType] = { ...purposes };
     });
     
     if (!surveyDuration && surveyStartTime) {
