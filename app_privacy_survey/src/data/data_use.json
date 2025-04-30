@@ -6,7 +6,6 @@
     { "category": "Product Personalization" },
     { "category": "App Functionality" },
     { "category": "Other Purposes" },
-    { "category": "Data Linked to You" },
-    { "category": "Data Not Linked to You" }
+    { "category": "Data Used to Identify You" }
   ]
 }
