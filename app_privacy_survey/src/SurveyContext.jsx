@@ -39,7 +39,7 @@ export function SurveyContextProvider({children}) {
 
         // sets the initial survey states as 0 for each purpose
         uses.forEach(purpose => {
-          initialData[type.name][purpose.category] = 0; // each purpose gets a starts with 0
+          initialData[type.name][purpose.category] = 0; // each purpose gets a starts with 0 value
         });
       });
     });
@@ -127,8 +127,10 @@ export function SurveyContextProvider({children}) {
     };
   
     // build object for survey responses
-    Object.entries(surveyModel.data).forEach(([dataType, purposes]) => {
-      document.responses[dataType] = { ...purposes };
+    const safeSurveyData = JSON.parse(JSON.stringify(surveyModel.data)); // deep clone
+
+    Object.entries(safeSurveyData).forEach(([dataType, purposes]) => {
+      document.responses[dataType] = purposes;
     });
     
     if (!surveyDuration && surveyStartTime) {
