@@ -11,7 +11,7 @@ function App() {
   const [surveyCompleted, setSurveyCompleted] = useState(false);
   const [surveyResults, setSurveyResults] = useState(null);
   const [popupText, setPopupText] = useState("");
-  
+
   const handleSubmit = () => {
     if (validateSurvey()) {
       const results = exportData();
@@ -63,14 +63,13 @@ function App() {
     );
   }
 
-  
   const showHelp = (description) => {
     setPopupText(description);
   };
 
   const hideHelp = () => {
-    setPopupText("")
-  }
+    setPopupText("");
+  };
 
   return (
     <div className="page survey-page">
@@ -117,8 +116,17 @@ function App() {
             <div key={section.category} className="data-type-section">
               <h2>{section.category}</h2>
               {section.items.map((type) => (
-                <div key={type.name} className="full-row row" onMouseEnter={() => showHelp(type.description)} onMouseLeave={() => hideHelp()}>
-                  <div className="type-header" onMouseEnter={() => showHelp(type.description)} onMouseLeave={() => hideHelp()}>{type.name}</div>
+                <div
+                  key={type.name}
+                  className="full-row row"
+                >
+                  <div
+                    className="type-header"
+                    onMouseEnter={() => showHelp(type.description)}
+                    onMouseLeave={() => hideHelp()}
+                  >
+                    {type.name}
+                  </div>
                   <InputRow typeName={type.name} />
                 </div>
               ))}
