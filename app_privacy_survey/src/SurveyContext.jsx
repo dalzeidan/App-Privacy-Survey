@@ -13,6 +13,10 @@ export function SurveyContextProvider({children}) {
   const [surveyModel, setSurveyModel] = useState(null);
   const [responses, setResponses] = useState({});
   
+  const [surveyStartTime, setSurveyStartTime] = useState(null);
+  const [surveyDuration, setSurveyDuration] = useState(null);
+  const [colorCycleCount, setColorCycleCount] = useState({});
+  
   // Initialize SurveyJS model
   useEffect(() => {
     const model = new Model();
@@ -27,6 +31,11 @@ export function SurveyContextProvider({children}) {
     types.forEach(section => {
       section.items.forEach(type => {
         initialData[type.name] = {}; // name of data type
+        
+        setColorCycleCount(prev => ({
+          ...prev,
+          [type.name]: 0 // sets the starting cycle count for a data type as 0
+        }));
 
         // sets the initial survey states as 0 for each purpose
         uses.forEach(purpose => {
@@ -40,6 +49,8 @@ export function SurveyContextProvider({children}) {
     setSurveyModel(model);
     setResponses(initialData);
     
+    setSurveyStartTime(new Date());
+    
     // event listener for changing an answer in the survey
     model.onValueChanged.add((sender, options) => {
       console.log("Data changed:", options.name, options.value);
@@ -47,30 +58,43 @@ export function SurveyContextProvider({children}) {
     });
   }, [types, uses]);
   
-// Updated updateResponse function to avoid using dot notation
-const updateResponse = (dataType, purpose, value) => {
-  if (surveyModel) {
-    // Get the current data for this data type
-    const currentTypeData = surveyModel.data[dataType] || {};
-    
-    // Update the specific purpose value
-    const updatedTypeData = {
-      ...currentTypeData,
-      [purpose]: value
-    };
-    
-    // Set the entire data object for this data type
-    surveyModel.setValue(dataType, updatedTypeData);
-    
-    // Update local state
-    const updatedResponses = {...responses};
-    if (!updatedResponses[dataType]) {
-      updatedResponses[dataType] = {};
+  const trackColorCycle = (dataType, oldValue, newValue) => { // adds count everytime the survey participant cycles back to green for a data type
+    if (newValue === 0 && oldValue !== 0) {
+      setColorCycleCount(prev => ({
+        ...prev,
+        [dataType]: (prev[dataType] || 0) + 1
+      }));
     }
-    updatedResponses[dataType][purpose] = value;
-    setResponses(updatedResponses);
-  }
-};
+  };
+
+  // Updated updateResponse function to avoid using dot notation
+  const updateResponse = (dataType, purpose, value) => {
+    if (surveyModel) {
+      // Get the current data for this data type
+      const currentTypeData = surveyModel.data[dataType] || {};
+      
+      const currentValue = currentTypeData[purpose];
+      
+      trackColorCycle(dataType, currentValue, value);
+      
+      // Update the specific purpose value
+      const updatedTypeData = {
+        ...currentTypeData,
+        [purpose]: value
+      };
+      
+      // Set the entire data object for this data type
+      surveyModel.setValue(dataType, updatedTypeData);
+      
+      // Update local state
+      const updatedResponses = {...responses};
+      if (!updatedResponses[dataType]) {
+        updatedResponses[dataType] = {};
+      }
+      updatedResponses[dataType][purpose] = value;
+      setResponses(updatedResponses);
+    }
+  };
   
   // gets current responses as a JSON
   const getSurveyData = () => {
@@ -84,16 +108,32 @@ const updateResponse = (dataType, purpose, value) => {
     return false;
   };
   
+
   const exportData = () => {
     if (!surveyModel) return null;
   
-    const document = {
-      responses: {}
+    const surveyTimeSeconds = surveyDuration || 
+      (surveyStartTime ? Math.round((new Date() - surveyStartTime) / 1000) : null); // calculate the time taken to complete the survey
+    
+    const totalCycles = Object.values(colorCycleCount).reduce((sum, count) => sum + count, 0); // total number of times a user cycles through answers
+  
+    const document = { // dcument object containing responses and stats
+      responses: {},
+      metadata: {
+        completionTimeSeconds: surveyTimeSeconds,
+        colorCycles: {...colorCycleCount},
+        totalColorCycles: totalCycles
+      }
     };
   
+    // build object for survey responses
     Object.entries(surveyModel.data).forEach(([dataType, purposes]) => {
       document.responses[dataType] = { ...purposes };
     });
+    
+    if (!surveyDuration && surveyStartTime) {
+      setSurveyDuration(surveyTimeSeconds);
+    }
   
     return document;
   };
@@ -107,7 +147,8 @@ const updateResponse = (dataType, purpose, value) => {
       updateResponse,
       getSurveyData,
       validateSurvey,
-      exportData
+      exportData,
+      colorCycleCount
     }}>
       {children}
     </SurveyContext.Provider>
