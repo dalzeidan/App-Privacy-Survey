@@ -1,11 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import { SurveyContext } from "./SurveyContext";
-
+import { SelectContext } from "./SelectContext";
 export default function InputBox({ typeName, purposeCategory, index }) {
   const { updateResponse, responses } = useContext(SurveyContext);
+  const { setIsDragging, setSelected} = useContext(SelectContext)
   
   // input box has the default state of being green (0)
   const [level, setLevel] = useState(-1);
+
+  const [holding, setHolding] = useState(false);
+  const [holdTimeout, setHoldTimeout] = useState(null);
   
   // Update from survey data if available
   useEffect(() => {
@@ -39,13 +43,38 @@ export default function InputBox({ typeName, purposeCategory, index }) {
     }
     return "grey";
   };
+
+  const handleMouseDown = (e) => {
+    setHolding(true);
+    
+    setHoldTimeout(
+      setTimeout(() => {
+        console.log("holding")
+        // console.log("You are")
+        // if (isHoldingDownRef.current) {
+        //   setIsHoldingDown(false);
+        //   console.log("is dragging")
+        //   setIsDragging(true);
+        //   // registerDiv(e)
+        // }
+      }, 1000)
+    ); // 1 second timeout
+  }
+
+  const handleMouseUp = (e) => {
+    setHolding(false);
+    clearTimeout(holdTimeout); 
+  }
   
   return (
     <div 
       className="input-box" 
       style={{backgroundColor: getColor(level)}} 
       onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     >
+      
       {index}
     </div>
   );
