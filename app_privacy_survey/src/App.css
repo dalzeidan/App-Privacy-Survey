@@ -9,6 +9,18 @@ body {
   padding: 0;
 }
 
+.display-none {
+  display: none;
+}
+
+.select-controls {
+  position: fixed;
+  left:0;
+  right:0;
+  background-color: #0d8aee;
+  top: 320px;
+}
+
 /* Header label with answer legend */
 .type-header.header-labels {
   display: flex;

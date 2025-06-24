@@ -53,7 +53,8 @@ export function SurveyContextProvider({children}) {
     
     // event listener for changing an answer in the survey
     model.onValueChanged.add((sender, options) => {
-      console.log("Data changed:", options.name, options.value);
+      console.log("Data changed:", options.name);
+      // console.log("Data changed:", options.name, options.value);
       setResponses({...sender.data});
     });
   }, [types, uses]);

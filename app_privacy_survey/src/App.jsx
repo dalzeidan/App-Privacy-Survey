@@ -4,10 +4,11 @@ import InputRow from "./InputRow";
 import { SurveyContext } from "./SurveyContext";
 import exampleApp from "./assets/1exampleAppStore.jpeg";
 import questionMark from "./assets/question-mark-outline.svg";
+import { SelectContext } from "./SelectContext";
 
 function App() {
-  const { types, uses, getSurveyData, validateSurvey, exportData } =
-    useContext(SurveyContext);
+  const { types, uses, getSurveyData, validateSurvey, exportData } = useContext(SurveyContext);
+  const { isDragging, setIsDragging, selected, setSelected, incrementAll } = useContext(SelectContext);
   const [surveyCompleted, setSurveyCompleted] = useState(false);
   const [surveyResults, setSurveyResults] = useState(null);
   const [popupText, setPopupText] = useState("");
@@ -20,8 +21,8 @@ function App() {
       console.log("Survey submitted:", results);
 
       // Send results directly to backend
-      fetch('api/data', {
-        method: 'POST',
+      fetch("api/data", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -52,9 +53,7 @@ function App() {
       <div className="page">
         <h2>Survey Completed</h2>
         <div>
-          <h3 style={{ color: "black", textAlign: "center" }}>
-            Thank you for your response
-          </h3>
+          <h3 style={{ color: "black", textAlign: "center" }}>Thank you for your response</h3>
           {/* <h3>Your Responses:</h3>
           <pre>{JSON.stringify(surveyResults, null, 2)}</pre>
           <button onClick={() => setSurveyCompleted(false)}>Back to Survey</button> */}
@@ -116,10 +115,7 @@ function App() {
             <div key={section.category} className="data-type-section">
               <h2>{section.category}</h2>
               {section.items.map((type) => (
-                <div
-                  key={type.name}
-                  className="full-row row"
-                >
+                <div key={type.name} className="full-row row">
                   <div
                     className="type-header"
                     onMouseEnter={() => showHelp(type.description)}
@@ -134,10 +130,16 @@ function App() {
           );
         })}
 
-        <div
-          className="survey-controls"
-          style={{ margin: "20px 0", textAlign: "center" }}
-        >
+        <div className={`select-controls ${selected.length > 0 ? "": "display-none"}`}>DRAGGING
+          <div>
+            {selected.map((item) => item.typeName)}
+          </div>
+          <button onClick={incrementAll}>
+            increment
+          </button>
+        </div>
+
+        <div className="survey-controls" style={{ margin: "20px 0", textAlign: "center" }}>
           <button onClick={handleSubmit}>Submit Survey</button>
         </div>
       </div>
