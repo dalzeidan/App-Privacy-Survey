@@ -5,6 +5,16 @@ import { Model } from "survey-core";
 
 export const SurveyContext = createContext();
 
+const dispatchExportEvent = (exportData) => {
+  window.dispatchEvent(
+    new CustomEvent("export-data", {
+      data: exportData,
+      bubbles: true, // Travels up the DOM tree to any listener
+      cancelable: true //
+    })
+  )
+}
+
 export function SurveyContextProvider({ children }) {
   const types = data_types.data_types;
   const uses = data_use.data_use;
@@ -142,6 +152,9 @@ export function SurveyContextProvider({ children }) {
         totalColorCycles: totalCycles,
       },
     };
+
+    dispatchExportEvent(document);
+
     return document;
   };
 
@@ -163,3 +176,9 @@ export function SurveyContextProvider({ children }) {
     </SurveyContext.Provider>
   );
 }
+
+
+// Add this code at the end of SurveyContext.jsx
+window.addEventListener('export-data', (event) => {
+  console.log('CustomEvent - Survey result data:', event.data);
+});
