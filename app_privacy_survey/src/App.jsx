@@ -20,7 +20,8 @@ function App() {
       console.log("Survey submitted:", results);
 
       // Send results directly to backend
-      fetch('api/data', {
+      // change to "http://localhost:3000/api/data" to use server.js local server
+      fetch("api/data", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
