@@ -60,7 +60,8 @@ body {
 }
 /* App preview styles */
 .app-preview {
-  position: fixed;
+  position: sticky;
+  top:0;
   right: 0;
   width: 20%;
   height: 100vh;
