@@ -37,9 +37,9 @@ export function SurveyContextProvider({children}) {
           [type.name]: 0 // sets the starting cycle count for a data type as 0
         }));
 
-        // sets the initial survey states as 0 for each purpose
+        // sets the initial survey states as -1 (unasnwered) for each purpose
         uses.forEach(purpose => {
-          initialData[type.name][purpose.category] = -1; // Each purpose gets a 0 value
+          initialData[type.name][purpose.category] = -1; // Each purpose gets a -1 value
         });
       });
     });
@@ -58,14 +58,16 @@ export function SurveyContextProvider({children}) {
     });
   }, [types, uses]);
   
-  const trackColorCycle = (dataType, oldValue, newValue) => { // adds count everytime the survey participant cycles back to green for a data type
-    if (newValue === 0 && oldValue !== 0) {
+  // uncomment this func if you want to track how many times participants cycle through answers
+  // also uncomment all lines under (// for color cycle tracking)
+  /*const trackColorCycle = (dataType, oldValue, newValue) => { // adds count everytime the survey participant cycles back to green for a data type
+    if (newValue === 0 && oldValue !== 0 && oldValue !== -1) {
       setColorCycleCount(prev => ({
         ...prev,
         [dataType]: (prev[dataType] || 0) + 1
       }));
     }
-  };
+  };*/ 
 
   // Updated updateResponse function to avoid using dot notation
   const updateResponse = (dataType, purpose, value) => {
@@ -115,14 +117,16 @@ export function SurveyContextProvider({children}) {
     const surveyTimeSeconds = surveyDuration || 
       (surveyStartTime ? Math.round((new Date() - surveyStartTime) / 1000) : null); // calculate the time taken to complete the survey
     
-    const totalCycles = Object.values(colorCycleCount).reduce((sum, count) => sum + count, 0); // total number of times a user cycles through answers
+    // for color cycle tracking
+    //const totalCycles = Object.values(colorCycleCount).reduce((sum, count) => sum + count, 0); // total number of times a user cycles through answers
   
     const document = { // dcument object containing responses and stats
       responses: {},
       metadata: {
         completionTimeSeconds: surveyTimeSeconds,
-        colorCycles: {...colorCycleCount},
-        totalColorCycles: totalCycles
+        // for color cycle tracking
+        //colorCycles: {...colorCycleCount},
+        //totalColorCycles: totalCycles
       }
     };
   
@@ -148,7 +152,8 @@ export function SurveyContextProvider({children}) {
       getSurveyData,
       validateSurvey,
       exportData,
-      colorCycleCount
+      // for color cycle tracking
+      // colorCycleCount (uncomment if you want to track how many times participants cycle through answers)
     }}>
       {children}
     </SurveyContext.Provider>

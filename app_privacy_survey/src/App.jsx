@@ -20,7 +20,8 @@ function App() {
       console.log("Survey submitted:", results);
 
       // Send results directly to backend
-      fetch('api/data', {
+      // change to "http://localhost:3000/api/data" to use server.js local server
+      fetch("api/data", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +56,9 @@ function App() {
           <h3 style={{ color: "black", textAlign: "center" }}>
             Thank you for your response
           </h3>
-          {/* <h3>Your Responses:</h3>
+          {// this is for showing response JSON after completing survey with the option to
+          // return to the survey (used for testing)
+          /* <h3>Your Responses:</h3>
           <pre>{JSON.stringify(surveyResults, null, 2)}</pre>
           <button onClick={() => setSurveyCompleted(false)}>Back to Survey</button> */}
         </div>
