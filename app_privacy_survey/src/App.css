@@ -115,6 +115,13 @@ body {
   height: fit-content;
 }
 
+.comparison {
+  text-align: center; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .survey-page {
   display: flex;
 }
