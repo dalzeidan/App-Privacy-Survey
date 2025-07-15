@@ -50,7 +50,7 @@ function App() {
   // Show results if survey is completed
   if (surveyCompleted && surveyResults) {
     return (
-      <ComparisonScreen/>
+      <ComparisonScreen results={surveyResults}/>
     );
   }
 
