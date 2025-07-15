@@ -5,6 +5,7 @@ import { SurveyContext } from "./SurveyContext";
 import exampleApp from "./assets/1exampleAppStore.jpeg";
 import questionMark from "./assets/question-mark-outline.svg";
 import ComparisonScreen from "./ComparisonScreen";
+import AppPreview from "./AppPreview";
 
 function App() {
   const { types, uses, getSurveyData, validateSurvey, exportData } =
@@ -61,6 +62,19 @@ function App() {
   const hideHelp = () => {
     setPopupText("");
   };
+
+  const exampleApp = {
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/82/6e/20/826e20c6-e1f9-0966-f035-10727f5bf61d/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp",
+    title: "Image Playground",
+    subTitle: "Create Fun Images Easily", 
+    publisher: "Apple",
+    price: "Free",
+    images: ["https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ad/8b/bb/ad8bbb87-d8dc-bc5e-d2d0-64ddde4c06b7/Image_1.jpeg/460x0w.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/69/0c/cd/690ccdf2-c554-1288-cee2-68cdf845abfb/Image_2.jpeg/460x0w.webp",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/1f/89/a71f8991-72c1-4695-1fb0-fc84b3a3b671/IMG_0068.jpeg/460x0w.webp"
+    ],
+    category: "Graphics & Design"
+  }
 
   return (
     <div className="page survey-page">
@@ -134,8 +148,8 @@ function App() {
       </div>
       <div className="app-preview">
         <div className="app-preview-header">App Store Preview</div>
-
-        <img src={exampleApp} width={"100%"} />
+        <AppPreview app={exampleApp}/>
+        {/* <img src={exampleApp} width={"100%"} /> */}
       </div>
     </div>
   );
