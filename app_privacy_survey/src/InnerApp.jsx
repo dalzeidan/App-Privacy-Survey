@@ -2,10 +2,11 @@ import { useContext, useState } from "react";
 import "./App.css";
 import InputRow from "./InputRow";
 import { SurveyContext } from "./SurveyContext";
-import exampleApp from "./assets/1exampleAppStore.jpeg";
 import questionMark from "./assets/question-mark-outline.svg";
 import ComparisonScreen from "./ComparisonScreen";
 import AppPreview from "./AppPreview";
+// import exampleApp from "./assets/1exampleAppStore.jpeg";
+import { asphalt8 } from "./data/AppData";
 
 function App() {
   const { types, uses, getSurveyData, validateSurvey, exportData } =
@@ -63,55 +64,7 @@ function App() {
     setPopupText("");
   };
 
-  const exampleApp = {
-    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/82/6e/20/826e20c6-e1f9-0966-f035-10727f5bf61d/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp",
-    title: "Image Playground",
-    subTitle: "Create Fun Images Easily", 
-    publisher: "Apple",
-    price: "Free",
-    images: ["https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ad/8b/bb/ad8bbb87-d8dc-bc5e-d2d0-64ddde4c06b7/Image_1.jpeg/460x0w.webp",
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/69/0c/cd/690ccdf2-c554-1288-cee2-68cdf845abfb/Image_2.jpeg/460x0w.webp",
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/1f/89/a71f8991-72c1-4695-1fb0-fc84b3a3b671/IMG_0068.jpeg/460x0w.webp"
-    ],
-    category: "Graphics & Design",
-    appDescription: `Image Playground, powered by Apple Intelligence, lets you turn descriptions, concepts or people from your photo library into original, fun images in unique styles.
-
-    Create Delightful Images
-
-    Use concepts, descriptions and your photo library to create unique images. Get started quickly by choosing from a range of fine-tuned concepts to add them to your playground. Pick from categories like themes, costumes, accessories and places.
-
-
-    Easy to Use
-
-    The Image Playground experience was built from the ground up to be easy to use. Focus on experimenting and making fun images intuitively with suggestions, quick previews and a history of your previews you can easily revert back to. No need to learn how to build the perfect text description or worry about losing something along the way.
-
-
-    Created with Style
-
-    Create images in a set of distinct styles designed by Apple, and refined through hand-curated artwork. Animation style offers a whimsical, cartoon look with expressive characters and cinematic scenes. Illustration style is defined by strong outlines, simple shapes, and bold colors, providing uplifting and playful compositions. The highly detailed and academic Sketch style produces gorgeous drawings on stark backgrounds.
-
-
-    Available Where You Need It
-
-    Image Playground is integrated across apps. Use it in places like Messages when you’re messaging with friends and family and want to express yourself with a fun and delightful image. And if you use Image Playground, you’ll see suggested concepts based on the context of your messages thread.
-
-
-    Image Playground is available in the following languages:
-
-    English
-
-    French
-
-    German
-
-    Italian
-
-    Japanese
-
-    Portuguese (Brazil)
-
-    Spanish`
-  }
+  
 
   return (
     <div className="page survey-page">
@@ -185,7 +138,7 @@ function App() {
       </div>
       <div className="app-preview">
         <div className="app-preview-header">App Store Preview</div>
-        <AppPreview app={exampleApp}/>
+        <AppPreview app={asphalt8}/>
         {/* <img src={exampleApp} width={"100%"} /> */}
       </div>
     </div>
