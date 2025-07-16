@@ -20,6 +20,7 @@ function App() {
       const results = exportData();
       setSurveyResults(results);
       setSurveyCompleted(true);
+      window.scrollTo({top: 0});
       console.log("Survey submitted:", results);
 
       // Send results directly to backend
