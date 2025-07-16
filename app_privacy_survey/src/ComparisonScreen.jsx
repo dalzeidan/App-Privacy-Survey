@@ -1,30 +1,35 @@
-import { useContext, useState } from "react";
 import apple_labels from "./data/apple_labels.json";
 
 export default function ComparisonScreen(results) {
-    function formatResponses(responses) {
-        const valueMap = {
-            0: 'Not collected',
-            1: 'Used internally',
-            2: 'Shared to 3rd party'
-          };
+    const valueMap = {
+      0: 'Not collected',
+      1: 'Used internally',
+      2: 'Shared to 3rd party'
+    };
+    function formatResponses(responses, appleLabels) {
+      const formattedResponses = Object.entries(responses).map(([field, uses]) => {
+        const appleUse = appleLabels[field] || {};
+        const purposeLines = Object.entries(uses).map(([purpose, value]) => {
+          const textValue = valueMap[value];
+          const appleValue = appleUse[purpose];
+          const isDifferent = appleValue !== value;
+             
+          return (
+              <div key={purpose} style={{
+                  backgroundColor: isDifferent ? '#ffebee' : 'transparent',
+              }}>
+                  {`  ${purpose}: ${textValue}`}
+              </div>
+          );
+          });
 
-        const formattedResponses = Object.entries(responses) // change to [key,value] pairs
-          .map(([field, uses]) => {
-            // 'field' is something like "Name" or "Email Address"
-            // 'uses' is another object with categories like "Third-Party Advertising": 0, etc.
-
-            // formats each use category as a line: "  Analytics: 0"
-            const inner = Object.entries(uses)
-              .map(([purpose, value]) => {
-                const textValue = valueMap[value]; // maps the values 0,1,2 to their text answers
-                return `  ${purpose}: ${textValue}`;
-              }).join('\n'); // seperates each data use with a newline
-
-            // combine data type with its data uses
-            return `${field}:\n${inner}`;
-          })
-          .join('\n\n'); // seperates each data type with a new line
+        return (
+            <div key={field} style={{ marginBottom: '1em' }}>
+                <div style={{ fontWeight: 'bold' }}>{field}:</div>
+                {purposeLines}
+            </div>
+        );
+      }); // seperates each data type with a new line
         
         return formattedResponses
       }
@@ -46,7 +51,7 @@ export default function ComparisonScreen(results) {
                 Your responses:
                 </h3>
                 <pre style={{textAlign: "left", whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
-                    {formatResponses(results.results.responses)}
+                    {formatResponses(results.results.responses, apple_labels.apple_labels)}
                 </pre>
             </div>
             <div className="appleLabels">
@@ -54,7 +59,7 @@ export default function ComparisonScreen(results) {
                 Apple's labels:
                 </h3>
                 <pre style={{textAlign: "left", whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
-                    {formatResponses(apple_labels.apple_labels)}
+                    {formatResponses(apple_labels.apple_labels, apple_labels.apple_labels)}
                 </pre>
             </div>
         </div>
