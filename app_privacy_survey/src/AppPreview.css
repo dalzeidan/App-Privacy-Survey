@@ -36,6 +36,10 @@ h3 {
   
 }
 
+.app-description {
+  padding: 28px 28px 0 28px;
+}
+
 .app-privacy {
   padding: 28px;
 }
@@ -49,4 +53,8 @@ h3 {
   border-radius: 16px;
   padding: 28px;
   text-align: center;
+}
+
+p {
+  margin-bottom: 0;
 }

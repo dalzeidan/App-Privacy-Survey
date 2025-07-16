@@ -2,7 +2,11 @@ import React from "react";
 import "./AppPreview.css";
 
 export default function AppPreview({ app }) {
-  const { icon, title, subTitle, publisher,price, images, textDescription,category } = app;
+  const { icon, title, subTitle, publisher,price, images, appDescription,category } = app;
+
+  const parsedAppDescription = appDescription.split('\n').map((line,index) => {if (line.trim()) return (
+    <p key={"desc-"+index+line}>{line.trim()}</p>
+  )});
 
   return (
     <div className="app-preview-display">
@@ -26,8 +30,8 @@ export default function AppPreview({ app }) {
         </div>
       </div>
 
-      <div className="text-description">
-        {textDescription}
+      <div className="app-description">
+        {parsedAppDescription}
       </div>
 
       <div className="app-privacy">
