@@ -2,6 +2,46 @@ h3 {
   margin: 0;
 }
 
+/* App preview styles */
+.app-preview {
+  position: sticky;
+  top:0;
+  right: 0;
+  max-width: 675px;
+  height: 100vh;
+  overflow-y: scroll;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.app-preview-header {
+  position: sticky;
+  top: 0;
+  padding: 16px;
+  background-color: #4a6fa5;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 11;
+}
+
+.app-preview-header button {
+  background-color: #fff;
+  color: #4a6fa5;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.app-preview-header button:hover {
+  background-color: #e0e7ff;
+}
 
 .app-preview-display {
   width: 100%;
