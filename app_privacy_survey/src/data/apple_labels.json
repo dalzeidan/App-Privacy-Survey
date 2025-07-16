@@ -1,0 +1,352 @@
+{"apple_labels": {
+    "Name": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 1,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Email Address": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Phone Number": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Physical Address": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Other User Contact Info": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Health": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Fitness": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Payment Info": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Credit Info": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Other Financial Info": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Precise Location": {
+        "Third-Party Advertising": 1,
+        "Developer’s Advertising or Marketing": 1,
+        "Analytics": 1,
+        "Product Personalization": 1,
+        "App Functionality": 1,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Coarse Location": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Sensitive Info": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Contacts": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Emails or Text Messages": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Photos or Videos": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Audio Data": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Gameplay Content": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Customer Support": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Other User Content": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Browsing History": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Search History": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "User ID": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Device ID": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Purchase History": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Product Interaction": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Advertising Data": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Other Usage Data": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Crash Data": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Performance Data": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Other Diagnostic Data": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    },
+    "Environment Scanning": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Hands": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Head": {
+        "Third-Party Advertising": 0,
+        "Developer’s Advertising or Marketing": 0,
+        "Analytics": 0,
+        "Product Personalization": 0,
+        "App Functionality": 0,
+        "Other Purposes": 0,
+        "Identification Data": 0,
+        "Tracking Data": 0
+    },
+    "Other Data Types": {
+        "Third-Party Advertising": 2,
+        "Developer’s Advertising or Marketing": 2,
+        "Analytics": 2,
+        "Product Personalization": 2,
+        "App Functionality": 2,
+        "Other Purposes": 2,
+        "Identification Data": 2,
+        "Tracking Data": 2
+    }
+}}

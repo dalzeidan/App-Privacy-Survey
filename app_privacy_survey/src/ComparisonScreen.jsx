@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import apple_labels from "./data/apple_labels.json";
+
 export default function ComparisonScreen(results) {
     function formatResponses(responses) {
         const valueMap = {
@@ -51,6 +53,9 @@ export default function ComparisonScreen(results) {
                 <h3 style={{ color: "black", textAlign: "center"}}>
                 Apple's labels:
                 </h3>
+                <pre style={{textAlign: "left", whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+                    {formatResponses(apple_labels.apple_labels)}
+                </pre>
             </div>
         </div>
         </div>
