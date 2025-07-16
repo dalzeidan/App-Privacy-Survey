@@ -50,7 +50,7 @@ export function SurveyContextProvider({ children }) {
 
         // sets the initial survey states as -1 (unasnwered) for each purpose
         uses.forEach(purpose => {
-          initialData[type.name][purpose.category] = 0; // Each purpose gets a -1 value
+          initialData[type.name][purpose.category] = -1; // Each purpose gets a -1 value
         });
       });
     });
