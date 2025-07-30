@@ -3,7 +3,7 @@ import { SurveyContext } from "./SurveyContext";
 import { SelectContext } from "./SelectContext";
 export default function InputBox({ typeName, purposeCategory, index }) {
   const { updateResponse, responses } = useContext(SurveyContext);
-  const { isDragging, setIsDragging, addItem } = useContext(SelectContext);
+  const { mouseDown, isDragging, setIsDragging, addItem, selected, setSelected } = useContext(SelectContext);
 
   // input box has the default state of being green (0)
   const [level, setLevel] = useState(-1);
@@ -16,6 +16,7 @@ export default function InputBox({ typeName, purposeCategory, index }) {
     if (responses && responses[typeName] && responses[typeName][purposeCategory] !== undefined) {
       const surveyValue = responses[typeName][purposeCategory];
       if (surveyValue !== -1) {
+        console.log("upsdf")
         setLevel(surveyValue);
       }
     }
@@ -46,41 +47,55 @@ export default function InputBox({ typeName, purposeCategory, index }) {
   };
 
   const handleMouseDown = (e) => {
+    console.log("mouse down", {typeName,purposeCategory});
+    mouseDown.current = true;
+    addItem({typeName,purposeCategory})
     // setHolding(true);
 
-    holdTimeout.current = setTimeout(() => {
-      console.log("Now dragging");
-      setIsDragging(true);
-      // setSelected((prev) => [...prev, {typeName, purposeCategory, setLevel}])
-      addItem({ typeName, purposeCategory, handleClick });
-      // console.log("You are")
-      // if (isHoldingDownRef.current) {
-      //   setIsHoldingDown(false);
-      //   console.log("is dragging")
-      //   setIsDragging(true);
-      //   // registerDiv(e)
-      // }
-    }, 1000); // 1 second timeout
+    // holdTimeout.current = setTimeout(() => {
+    //   console.log("Now dragging");
+    //   setIsDragging(true);
+    //   // setSelected((prev) => [...prev, {typeName, purposeCategory, setLevel}])
+    //   addItem({ typeName, purposeCategory, handleClick });
+    //   // console.log("You are")
+    //   // if (isHoldingDownRef.current) {
+    //   //   setIsHoldingDown(false);
+    //   //   console.log("is dragging")
+    //   //   setIsDragging(true);
+    //   //   // registerDiv(e)
+    //   // }
+    // }, 1000); // 1 second timeout
   };
 
   const handleMouseUp = () => {
-    console.log("mouse up");
-    clearTimeout(holdTimeout.current);
-    setIsDragging(false);
+    console.log("mouse up", {typeName,purposeCategory});
+    console.log(selected);
+    mouseDown.current = false;
+    if (selected.length <= 1) {
+      handleClick();
+      setSelected([]);
+    }
+
+    // clearTimeout(holdTimeout.current);
+    // setIsDragging(false);
     // setHolding(false);
   };
 
   const handleMouseEnter = () => {
-    if (isDragging) {
-      addItem({ typeName, purposeCategory, handleClick });
+    if (mouseDown.current) {
+      addItem({typeName,purposeCategory})
+      console.log(selected.length,{typeName,purposeCategory});
     }
+    // if (isDragging) {
+    //   addItem({ typeName, purposeCategory, handleClick });
+    // }
   }
 
   return (
     <div
       className="input-box"
       style={{ backgroundColor: getColor(level) }}
-      onClick={handleClick}
+      // onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseEnter={handleMouseEnter}

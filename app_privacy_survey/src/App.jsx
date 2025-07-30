@@ -1,16 +1,19 @@
 import { SurveyContextProvider } from "./SurveyContext";
-import {BrowserRouter, Routes, Route} from "react-router"
+import { BrowserRouter, Routes, Route } from "react-router";
 import InnerApp from "./InnerApp";
-import './index.css'
+import "./index.css";
+import { SelectContextProvider } from "./SelectContext";
 
 export default function App() {
   return (
     <SurveyContextProvider>
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<InnerApp />} />
-      </Routes>
-      </BrowserRouter>
+      <SelectContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<InnerApp />} />
+          </Routes>
+        </BrowserRouter>
+      </SelectContextProvider>
     </SurveyContextProvider>
   );
 }

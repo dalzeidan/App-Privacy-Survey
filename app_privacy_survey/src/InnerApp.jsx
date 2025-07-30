@@ -6,6 +6,7 @@ import exampleApp from "./assets/1exampleAppStore.jpeg";
 import questionMark from "./assets/question-mark-outline.svg";
 import ComparisonScreen from "./ComparisonScreen";
 import AppPreview from "./AppPreview";
+import { MultiControl } from "./SelectContext";
 
 function App() {
   const { types, uses, getSurveyData, validateSurvey, exportData } =
@@ -115,6 +116,7 @@ function App() {
 
   return (
     <div className="page survey-page">
+      <MultiControl />
       <div className="survey">
         <div className="purpose-headers">
           <div className="header-labels type-header">

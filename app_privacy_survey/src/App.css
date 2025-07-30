@@ -323,3 +323,15 @@ h2 {
     display: none;
   }
 }
+
+.multi-control {
+  position: fixed;
+  bottom: 30px;
+  background-color: #0d8aee;
+  padding: 10px;
+}
+
+.multi-control > button {
+  background-color: #c5dbee;
+  padding: 5px;
+}
