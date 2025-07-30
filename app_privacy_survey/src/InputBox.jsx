@@ -1,38 +1,53 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect } from "react";
 import { SurveyContext } from "./SurveyContext";
 import { SelectContext } from "./SelectContext";
 export default function InputBox({ typeName, purposeCategory, index }) {
   const { updateResponse, responses } = useContext(SurveyContext);
-  const { mouseDown, isDragging, setIsDragging, addItem, selected, setSelected, isIncluded } = useContext(SelectContext);
+  const { mouseDown, addItem, selected, isIncluded, removeItem, mouseDownState, multi,setStart } = useContext(SelectContext);
+
+  const self = {typeName, purposeCategory};
 
   // input box has the default state of being green (0)
   const [level, setLevel] = useState(-1);
 
-  // const [holding, setHolding] = useState(false);
-  const holdTimeout = useRef(null);
+  const [tempHighlight, setTempHighlight] = useState(false);
 
   // Update from survey data if available
   useEffect(() => {
     if (responses && responses[typeName] && responses[typeName][purposeCategory] !== undefined) {
       const surveyValue = responses[typeName][purposeCategory];
       if (surveyValue !== -1) {
-        console.log("upsdf")
         setLevel(surveyValue);
       }
     }
   }, [responses, typeName, purposeCategory]);
 
+  useEffect(() => {
+    setTempHighlight(false);
+  }, [selected])
+
+  // Clicks occur after mouse up event
   const handleClick = () => {
     console.log("click")
-    console.log(level)
-    // select which color is going to transition on click: 0 (green) -> 1 (orange) -> 2 (red) -> 0 (green)
-    const newLevel = (level + 1) % 3;
 
-    //local state value update
-    setLevel(newLevel);
+    if (!multi) {
+      // select which color is going to transition on click: 0 (green) -> 1 (orange) -> 2 (red) -> 0 (green)
+      const newLevel = (level + 1) % 3;
+  
+      // survey value update
+      updateResponse(typeName, purposeCategory, newLevel);
+      removeItem(self)
+      setTempHighlight(false);
+      setStart(null)
+      return;
+    }
 
-    // survey model value update
-    updateResponse(typeName, purposeCategory, newLevel);
+    if (isIncluded(self)) {
+      removeItem(self);
+    } else {
+      addItem(self)
+    }
+
   };
 
   const getColor = (level) => {
@@ -47,55 +62,27 @@ export default function InputBox({ typeName, purposeCategory, index }) {
   };
 
   const handleMouseDown = (e) => {
-    console.log("mouse down", {typeName,purposeCategory});
     mouseDown.current = true;
-    addItem({typeName,purposeCategory})
-    // setHolding(true);
-
-    // holdTimeout.current = setTimeout(() => {
-    //   console.log("Now dragging");
-    //   setIsDragging(true);
-    //   // setSelected((prev) => [...prev, {typeName, purposeCategory, setLevel}])
-    //   addItem({ typeName, purposeCategory, handleClick });
-    //   // console.log("You are")
-    //   // if (isHoldingDownRef.current) {
-    //   //   setIsHoldingDown(false);
-    //   //   console.log("is dragging")
-    //   //   setIsDragging(true);
-    //   //   // registerDiv(e)
-    //   // }
-    // }, 1000); // 1 second timeout
+    setStart(self)
+    setTempHighlight(true);
   };
 
   const handleMouseUp = () => {
-    console.log("mouse up", {typeName,purposeCategory});
-    console.log(selected);
     mouseDown.current = false;
-    if (selected.length <= 1) {
-      handleClick();
-      setSelected([]);
-    }
-
-    // clearTimeout(holdTimeout.current);
-    // setIsDragging(false);
-    // setHolding(false);
   };
 
   const handleMouseEnter = () => {
-    if (mouseDown.current) {
-      addItem({typeName,purposeCategory})
-      console.log(selected.length,{typeName,purposeCategory});
+    if (mouseDown.current && mouseDownState) {
+      addItem(self)
+      console.log(selected.length,self);
     }
-    // if (isDragging) {
-    //   addItem({ typeName, purposeCategory, handleClick });
-    // }
   }
 
   return (
     <div
-      className={"input-box " + `${isIncluded({typeName, purposeCategory}) ? "selected" : ""}`}
+      className={"input-box " + `${tempHighlight || isIncluded(self) ? "selected" : ""}`}
       style={{ backgroundColor: getColor(level) }}
-      // onClick={handleClick}
+      onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseEnter={handleMouseEnter}
