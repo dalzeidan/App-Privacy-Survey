@@ -3,7 +3,7 @@ import { SurveyContext } from "./SurveyContext";
 import { SelectContext } from "./SelectContext";
 export default function InputBox({ typeName, purposeCategory, index }) {
   const { updateResponse, responses } = useContext(SurveyContext);
-  const { mouseDown, isDragging, setIsDragging, addItem, selected, setSelected } = useContext(SelectContext);
+  const { mouseDown, isDragging, setIsDragging, addItem, selected, setSelected, isIncluded } = useContext(SelectContext);
 
   // input box has the default state of being green (0)
   const [level, setLevel] = useState(-1);
@@ -93,7 +93,7 @@ export default function InputBox({ typeName, purposeCategory, index }) {
 
   return (
     <div
-      className="input-box"
+      className={"input-box " + `${isIncluded({typeName, purposeCategory}) ? "selected" : ""}`}
       style={{ backgroundColor: getColor(level) }}
       // onClick={handleClick}
       onMouseDown={handleMouseDown}

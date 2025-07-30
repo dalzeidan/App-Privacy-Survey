@@ -116,8 +116,8 @@ function App() {
 
   return (
     <div className="page survey-page">
-      <MultiControl />
       <div className="survey">
+        <MultiControl />
         <div className="purpose-headers">
           <div className="header-labels type-header">
             {popupText == "" ? (
