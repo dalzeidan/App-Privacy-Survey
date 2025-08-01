@@ -3,7 +3,7 @@ import { SurveyContext } from "./SurveyContext";
 import { SelectContext } from "./SelectContext";
 export default function InputBox({ typeName, purposeCategory, index }) {
   const { updateResponse, responses } = useContext(SurveyContext);
-  const { mouseDown, addItem, selected, isIncluded, removeItem, mouseDownState, multi,setStart } = useContext(SelectContext);
+  const { mouseDown, addItem, selected, isIncluded, removeItem, mouseDownState, multi,setStart, addingRef } = useContext(SelectContext);
 
   const self = {typeName, purposeCategory};
 
@@ -29,9 +29,7 @@ export default function InputBox({ typeName, purposeCategory, index }) {
 
   // Clicks occur after mouse up event
   const handleClick = () => {
-    console.log("click")
-
-    if (!multi) {
+    if (!multi && addingRef.current) {
       // select which color is going to transition on click: 0 (green) -> 1 (orange) -> 2 (red) -> 0 (green)
       const newLevel = (level + 1) % 3;
   
@@ -43,9 +41,9 @@ export default function InputBox({ typeName, purposeCategory, index }) {
       return;
     }
 
-    if (isIncluded(self)) {
+    if (isIncluded(self) && !addingRef.current) {
       removeItem(self);
-    } else {
+    } else if (addingRef.current) {
       addItem(self)
     }
 
@@ -66,8 +64,10 @@ export default function InputBox({ typeName, purposeCategory, index }) {
     mouseDown.current = true;
     setStart(self)
     if (!isIncluded(self)) {
+      addingRef.current = true;
       setTempHighlight(true);
     } else {
+      addingRef.current = false;
       setTempOff(true);
     }
   };
@@ -78,12 +78,11 @@ export default function InputBox({ typeName, purposeCategory, index }) {
 
   const handleMouseEnter = () => {
     if (mouseDown.current && mouseDownState) {
-      if (!isIncluded(self)) {
+      if (!isIncluded(self) && addingRef.current == true) {
         addItem(self);
-      } else {
+      } else if (addingRef.current == false) {
         removeItem(self)
       }
-      console.log(selected.length,self);
     }
   }
 

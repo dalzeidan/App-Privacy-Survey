@@ -8,7 +8,7 @@ export function SelectContextProvider({ children }) {
   const [multi, setMulti] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [selected, setSelected] = useState([]);
- const [adding, setAdding] = useState(true);
+  const addingRef = useRef(true);
 
   // let selected = useRef([]);
   let mouseDown = useRef(false);
@@ -56,35 +56,30 @@ export function SelectContextProvider({ children }) {
       return;
     }
 
-    const startAdded = selected.some(
-      (selectedItem) =>
-        selectedItem.typeName === start.typeName &&
-        selectedItem.purposeCategory === start.purposeCategory
-    );
-
-
-
     let updated = [...selected, item];
-    console.log("comp", item, start)
-    if (!startAdded && !(item.typeName === start.typeName && item.purposeCategory === start.purposeCategory)) {
-      console.log('faskdks')
-      updated.push(start)
+    if (start && !(item.typeName === start.typeName && item.purposeCategory === start.purposeCategory)) {
+      updated.push(start);
     }
 
     if (updated.length > 1) {
       setMulti(true);
     }
 
-    console.log(updated)
-
-    setSelected(updated)
+    setStart(null);
+    setSelected(updated);
   };
 
   const removeItem = (item) => {
-    const filtered = selected.filter(
-      (old) => !(old.typeName === item.typeName && old.purposeCategory === item.purposeCategory) &&
-               !(old.typeName === start.typeName &&old.purposeCategory === start.purposeCategory)
+    let filtered = selected.filter(
+      (old) => !(old.typeName === item.typeName && old.purposeCategory === item.purposeCategory)
     );
+
+    if (start != null) {
+      filtered = filtered.filter(
+        (old) => !(old.typeName === start.typeName && old.purposeCategory === start.purposeCategory)
+      );
+    }
+    setStart(null);
     setSelected(filtered);
     if (filtered.length == 0) {
       setMulti(false);
@@ -104,7 +99,6 @@ export function SelectContextProvider({ children }) {
 
   const clearSelected = () => {
     setSelected([]);
-    console.log(selected);
     setMulti(false);
   };
 
@@ -124,8 +118,7 @@ export function SelectContextProvider({ children }) {
         multi,
         mouseDownState,
         setStart,
-        adding,
-        setAdding
+        addingRef,
       }}
     >
       {children}
@@ -135,16 +128,6 @@ export function SelectContextProvider({ children }) {
 
 export function MultiControl() {
   const { incrementAll, selected, clearSelected, multi } = useContext(SelectContext);
-
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    console.log("update");
-    if (selected.length > 1) {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-  }, [selected]);
 
   const getColor = (level) => {
     if (level === 0) {
