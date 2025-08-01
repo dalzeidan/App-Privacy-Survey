@@ -5,8 +5,8 @@ import { SurveyContext } from "./SurveyContext";
 import questionMark from "./assets/question-mark-outline.svg";
 import ComparisonScreen from "./ComparisonScreen";
 import AppPreview from "./AppPreview";
-// import exampleApp from "./assets/1exampleAppStore.jpeg";
 import { asphalt8 } from "./data/AppData";
+import { MultiControl } from "./SelectContext";
 
 function App() {
   const { types, uses, getSurveyData, validateSurvey, exportData } =
@@ -70,6 +70,7 @@ function App() {
   return (
     <div className="page survey-page">
       <div className="survey">
+        <MultiControl />
         <div className="purpose-headers">
           <div className="header-labels type-header">
             {popupText == "" ? (
