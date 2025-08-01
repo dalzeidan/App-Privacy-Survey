@@ -11,7 +11,7 @@ export default function InputBox({ typeName, purposeCategory, index }) {
   const [level, setLevel] = useState(-1);
 
   const [tempHighlight, setTempHighlight] = useState(false);
-
+  const [tempOff, setTempOff] = useState(false);
   // Update from survey data if available
   useEffect(() => {
     if (responses && responses[typeName] && responses[typeName][purposeCategory] !== undefined) {
@@ -24,6 +24,7 @@ export default function InputBox({ typeName, purposeCategory, index }) {
 
   useEffect(() => {
     setTempHighlight(false);
+    setTempOff(false);
   }, [selected])
 
   // Clicks occur after mouse up event
@@ -64,7 +65,11 @@ export default function InputBox({ typeName, purposeCategory, index }) {
   const handleMouseDown = (e) => {
     mouseDown.current = true;
     setStart(self)
-    setTempHighlight(true);
+    if (!isIncluded(self)) {
+      setTempHighlight(true);
+    } else {
+      setTempOff(true);
+    }
   };
 
   const handleMouseUp = () => {
@@ -73,14 +78,18 @@ export default function InputBox({ typeName, purposeCategory, index }) {
 
   const handleMouseEnter = () => {
     if (mouseDown.current && mouseDownState) {
-      addItem(self)
+      if (!isIncluded(self)) {
+        addItem(self);
+      } else {
+        removeItem(self)
+      }
       console.log(selected.length,self);
     }
   }
 
   return (
     <div
-      className={"input-box " + `${tempHighlight || isIncluded(self) ? "selected" : ""}`}
+      className={"input-box " + `${tempHighlight} ${tempHighlight || (!tempOff && isIncluded(self)) ? "selected" : ""}`}
       style={{ backgroundColor: getColor(level) }}
       onClick={handleClick}
       onMouseDown={handleMouseDown}

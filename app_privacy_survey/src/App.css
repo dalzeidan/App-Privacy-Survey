@@ -343,15 +343,14 @@ h2 {
 }
 
 .multi-control > button {
-  background-color: #c5dbee;
+  background-color: #4a6fa5;
   padding: 5px;
 }
 
 .color-options {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
-  background-color: #eef2f7;
+  padding: 8px 0;
 }
 
 .color-options-input {
