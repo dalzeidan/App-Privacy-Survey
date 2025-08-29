@@ -1,9 +1,15 @@
 {
-    "functions": {
-      "api/data.js": {
-        "memory": 256,
-        "maxDuration": 30
-      }
-    },
-    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]   
-  }
+  "functions": {
+    "api/*.js": {
+      "memory": 256,
+      "maxDuration": 30
+    }
+  },
+  "builds": [
+    { "src": "vite.config.js", "use": "@vercel/static-build" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
